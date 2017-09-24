@@ -17,6 +17,7 @@ namespace PrimeTables.Tests
                 yield return new TestCaseData(string.Empty);
                 yield return new TestCaseData((-1).ToString());
                 yield return new TestCaseData(0.ToString());
+                yield return new TestCaseData(1.1.ToString());
                 yield return new TestCaseData(int.MaxValue.ToString());
                 yield return new TestCaseData(long.MaxValue.ToString());
             }
@@ -27,7 +28,6 @@ namespace PrimeTables.Tests
             get
             {
                 yield return new TestCaseData(1.ToString());
-                yield return new TestCaseData(1.1.ToString());
                 yield return new TestCaseData(100.ToString());
                 yield return new TestCaseData((int.MaxValue - 1).ToString());
             }

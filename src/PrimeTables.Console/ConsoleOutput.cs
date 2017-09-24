@@ -16,7 +16,22 @@
 
         public long[,] CreatePrimeTable()
         {
-            throw new NotImplementedException();
+            if (Multipler == 0 || PrimeNumbers == null || PrimeNumbers.Length < 1)
+            {
+                return null;
+            }
+
+            var table = new long[Multipler,PrimeNumbers.Length];
+
+            for (var i = 0; i <= Multipler-1; i++)
+            {
+                for (var j = 0; j <= PrimeNumbers.Length - 1; j++)
+                {
+                    table[i, j] = PrimeNumbers[j] * (i + 1);
+                }
+            }
+
+            return table;
         }
     }
 }
