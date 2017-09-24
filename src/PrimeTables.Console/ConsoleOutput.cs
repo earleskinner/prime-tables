@@ -14,20 +14,21 @@
 
         public long[] PrimeNumbers { get; }
 
-        public long[,] CreatePrimeTable()
+        public long[][] CreatePrimeTable()
         {
             if (Multipler == 0 || PrimeNumbers == null || PrimeNumbers.Length < 1)
             {
                 return null;
             }
 
-            var table = new long[Multipler,PrimeNumbers.Length];
+            var table = new long[Multipler][];
 
             for (var i = 0; i <= Multipler-1; i++)
             {
+                table[i] = new long[PrimeNumbers.Length];
                 for (var j = 0; j <= PrimeNumbers.Length - 1; j++)
                 {
-                    table[i, j] = PrimeNumbers[j] * (i + 1);
+                    table[i][j] = PrimeNumbers[j] * (i + 1);
                 }
             }
 

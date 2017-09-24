@@ -21,10 +21,25 @@ namespace PrimeTables.Console
             var output = new ConsoleOutput(input.UpperBound, primeNumbers);
 
             var primeTable = output.CreatePrimeTable();
-            // TODO
-            // Write to console
+            WritePrimeTable(primeTable);
 
+            Console.WriteLine("Please any key to quit");
             Console.ReadKey();
+        }
+
+        private static void WritePrimeTable(long[][] table)
+        {
+            var builder = new StringBuilder();
+            for (var i = 0; i <= table.Length - 1; i++)
+            {
+                for (var j = 0; j <= table[i].Length - 1; j++)
+                {
+                    builder.Append(j == 0 ? "|" : string.Empty);
+                    builder.Append($" {table[i][j]} |");
+                }
+                Console.WriteLine(builder.ToString());
+                builder.Clear();
+            }
         }
     }
 }
