@@ -38,12 +38,12 @@ namespace PrimeTables.Tests
         {
             get
             {
-                yield return new TestCaseData(new ConsoleOutput(0, null), null);
-                yield return new TestCaseData(new ConsoleOutput(1, null), null);
-                yield return new TestCaseData(new ConsoleOutput(0, new long[] { 0 }), null);
-                yield return new TestCaseData(new ConsoleOutput(1, new long[] { 0 }), new long[][] { new long[] { 0 } });
-                yield return new TestCaseData(new ConsoleOutput(1, new long[] { 2, 3, 5 }), new long[][] { new long[] { 2, 3, 5 } });
-                yield return new TestCaseData(new ConsoleOutput(2, new long[] { 2, 3, 5 }), new long[][] { new long[] { 2, 3, 5 }, new long[] { 4, 6, 10 } });
+                yield return new TestCaseData(new ConsoleOutput{ Multipler = 0, PrimeNumbers = null}, null);
+                yield return new TestCaseData(new ConsoleOutput { Multipler = 1, PrimeNumbers = null }, null);
+                yield return new TestCaseData(new ConsoleOutput { Multipler = 0, PrimeNumbers = new long[] { 0 } }, null);
+                yield return new TestCaseData(new ConsoleOutput { Multipler = 1, PrimeNumbers = new long[] { 0 } }, new long[][] { new long[] { 0 } });
+                yield return new TestCaseData(new ConsoleOutput { Multipler = 1, PrimeNumbers = new long[] { 2, 3, 5 }}, new long[][] { new long[] { 2, 3, 5 } });
+                yield return new TestCaseData(new ConsoleOutput { Multipler = 2, PrimeNumbers = new long[] { 2, 3, 5 }}, new long[][] { new long[] { 2, 3, 5 }, new long[] { 4, 6, 10 } });
             }
         }
 
@@ -51,11 +51,11 @@ namespace PrimeTables.Tests
         {
             get
             {
-                yield return new TestCaseData(0);
+                yield return new TestCaseData(1);
                 yield return new TestCaseData(100);
                 yield return new TestCaseData(1000);
                 yield return new TestCaseData(10000);
-                yield return new TestCaseData(50000);
+                yield return new TestCaseData(20000);
                 // Caution: Do not try to run the below tests
                 // They will cripple any machine
                 //yield return new TestCaseData(100000);
@@ -95,9 +95,11 @@ namespace PrimeTables.Tests
         [TestCaseSource(nameof(OutOfMemoryTestData))]
         public void Should_not_throw_out_of_memmory_exception(int upperbound)
         {
-            Assert.DoesNotThrow(() => {
-                    var generator = new PrimeNumberGenerator(upperbound);
-                    var output = new ConsoleOutput(upperbound, generator.GeneratePrimeNumbers());
+            Assert.DoesNotThrow(() =>
+                {
+                    var input = new ConsoleInput(new string[] { upperbound.ToString() });
+                    var generator = new PrimeNumberGenerator();
+                    var output = generator.GeneratePrimeNumbers<ConsoleOutput>(input);
                     var table = output.CreatePrimeTable();
                 });
         }

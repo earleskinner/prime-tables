@@ -15,31 +15,14 @@ namespace PrimeTables.Console
         static void Main(string[] args)
         {
             var input = new ConsoleInput(args);
-            var generator = new PrimeNumberGenerator(input.UpperBound);
+            var generator = new PrimeNumberGenerator();
             Console.WriteLine("Generating prime numbers...");
-            var primeNumbers = generator.GeneratePrimeNumbers();
-            var output = new ConsoleOutput(input.UpperBound, primeNumbers);
+            var output = generator.GeneratePrimeNumbers<ConsoleOutput>(input);
 
-            var primeTable = output.CreatePrimeTable();
-            WritePrimeTable(primeTable);
+            output.WritePrimeTable();
 
             Console.WriteLine("Please any key to quit");
             Console.ReadKey();
-        }
-
-        private static void WritePrimeTable(long[][] table)
-        {
-            var builder = new StringBuilder();
-            for (var i = 0; i <= table.Length - 1; i++)
-            {
-                for (var j = 0; j <= table[i].Length - 1; j++)
-                {
-                    builder.Append(j == 0 ? "|" : string.Empty);
-                    builder.Append($" {table[i][j]} |");
-                }
-                Console.WriteLine(builder.ToString());
-                builder.Clear();
-            }
         }
     }
 }

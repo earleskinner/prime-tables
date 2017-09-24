@@ -1,38 +1,27 @@
 ﻿namespace PrimeTables.Console
 {
     using System;
+    using System.Text;
 
-    public class ConsoleOutput
+    using PrimeTables.Computation;
+
+    public class ConsoleOutput : AbstractOutput
     {
-        public ConsoleOutput(int multipler, long[] primeNumbers)
+        public override void WritePrimeTable()
         {
-            Multipler = multipler;
-            PrimeNumbers = primeNumbers;
-        }
+            var table = this.CreatePrimeTable();
+            var builder = new StringBuilder();
 
-        public int Multipler { get; }
-
-        public long[] PrimeNumbers { get; }
-
-        public long[][] CreatePrimeTable()
-        {
-            if (Multipler == 0 || PrimeNumbers == null || PrimeNumbers.Length < 1)
+            for (var i = 0; i <= table.Length - 1; i++)
             {
-                return null;
-            }
-
-            var table = new long[Multipler][];
-
-            for (var i = 0; i <= Multipler-1; i++)
-            {
-                table[i] = new long[PrimeNumbers.Length];
-                for (var j = 0; j <= PrimeNumbers.Length - 1; j++)
+                for (var j = 0; j <= table[i].Length - 1; j++)
                 {
-                    table[i][j] = PrimeNumbers[j] * (i + 1);
+                    builder.Append(j == 0 ? "|" : string.Empty);
+                    builder.Append($" {table[i][j]} |");
                 }
+                Console.WriteLine(builder.ToString());
+                builder.Clear();
             }
-
-            return table;
         }
     }
 }

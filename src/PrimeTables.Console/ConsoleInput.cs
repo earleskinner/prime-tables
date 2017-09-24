@@ -2,7 +2,9 @@
 {
     using System;
 
-    public class ConsoleInput
+    using PrimeTables.Computation;
+
+    public class ConsoleInput : IInput
     {
         public ConsoleInput(string[] args)
         {
@@ -30,6 +32,6 @@
             UpperBound = upperBound + 1;
         }
 
-        public int UpperBound { get; }
+        public int UpperBound { get; set;  }
     }
 }

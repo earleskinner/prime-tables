@@ -1,17 +1,11 @@
 ﻿namespace PrimeTables.Computation
 {
+    using System;
     using System.Collections.Generic;
 
-    public class PrimeNumberGenerator
+    public class PrimeNumberGenerator : IGenerator
     {
         private readonly List<long> primeNumbers = new List<long>();
-
-        public PrimeNumberGenerator(int upperBound)
-        {
-            UpperBound = upperBound;
-        }
-
-        public int UpperBound { get; }
 
         /// <summary>
         /// Initial generation of prime numbers using "trial by division"
@@ -19,18 +13,18 @@
         /// TODO: Use different algorithm
         /// </summary>
         /// <returns></returns>
-        public long[] GeneratePrimeNumbers()
+        public T GeneratePrimeNumbers<T>(IInput input) where T : IOutput
         {
-            if (UpperBound == 0)
+            if (input.UpperBound == 0)
             {
-                return null;
+                return default(T);
             }
 
             primeNumbers.Add(2);
             var number = 3;
             var counter = 1;
 
-            while (counter < UpperBound)
+            while (counter < input.UpperBound)
             {
                 if (isPrime(number))
                 {
@@ -41,7 +35,11 @@
                 number += 2;
             }
 
-            return this.primeNumbers.ToArray();
+            var instance = (IOutput)Activator.CreateInstance<T>();
+            instance.Multipler = input.UpperBound;
+            instance.PrimeNumbers = this.primeNumbers.ToArray();
+
+            return (T)instance;
         }
 
         private bool isPrime(long number)
