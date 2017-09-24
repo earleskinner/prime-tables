@@ -8,7 +8,7 @@
         {
             if (args.Length != 1)
             {
-                throw new ArgumentException("Invalid arguments Example: > pt [number]");
+                throw new ArgumentException("Invalid arguments Example: > pt.exe [number]");
             }
 
             int upperBound;
@@ -27,7 +27,7 @@
                 throw new ArgumentException($"Please ensure [number] is less than {int.MaxValue}. Example: 100");
             }
 
-            UpperBound = upperBound;
+            UpperBound = upperBound + 1;
         }
 
         public int UpperBound { get; }

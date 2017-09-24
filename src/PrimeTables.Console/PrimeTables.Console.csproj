@@ -7,7 +7,7 @@
     <ProjectGuid>{EC081308-6B65-4ACE-A3D9-85696C4A4AEE}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>PrimeTables.Console</RootNamespace>
-    <AssemblyName>PrimeTables.Console</AssemblyName>
+    <AssemblyName>pt</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
