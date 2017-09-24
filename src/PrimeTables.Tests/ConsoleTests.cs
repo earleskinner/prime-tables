@@ -40,9 +40,9 @@ namespace PrimeTables.Tests
                 yield return new TestCaseData(new ConsoleOutput(0, null), null);
                 yield return new TestCaseData(new ConsoleOutput(1, null), null);
                 yield return new TestCaseData(new ConsoleOutput(0, new long[]{ 0 }), null);
-                yield return new TestCaseData(new ConsoleOutput(1, new long[] { 0 }), new long[,] { {0,0}  });
-                yield return new TestCaseData(new ConsoleOutput(1, new long[] { 2, 3, 5 }), new long[,] { { 0, 0 }, { 0, 2 }, { 0, 3 }, { 0, 5 } });
-                yield return new TestCaseData(new ConsoleOutput(2, new long[] { 2, 3, 5 }), new long[,] { { 0, 2 }, { 0, 3 }, { 0, 5 }, { 1, 4 }, { 1, 6 }, { 1, 10 } });
+                yield return new TestCaseData(new ConsoleOutput(1, new long[] { 0 }), new long[,] { { 0 }});
+                yield return new TestCaseData(new ConsoleOutput(1, new long[] { 2, 3, 5 }), new long[,] { { 2, 3, 5 } });
+                yield return new TestCaseData(new ConsoleOutput(2, new long[] { 2, 3, 5 }), new long[,] { { 2, 3, 5 }, { 4, 6, 10 } });
             }
         }
 
