@@ -34,7 +34,7 @@ namespace PrimeTables.Tests
                 yield return new TestCaseData(new PrimeNumberGenerator(0), 1);
                 yield return new TestCaseData(new PrimeNumberGenerator(1), 1);
                 yield return new TestCaseData(new PrimeNumberGenerator(3), 1);
-                yield return new TestCaseData(new PrimeNumberGenerator(10000), 500);
+                yield return new TestCaseData(new PrimeNumberGenerator(10000), 600);
                 yield return new TestCaseData(new PrimeNumberGenerator(20000), 1000);
             }
         }
