@@ -23,15 +23,15 @@ To build this application outside of Visual Studio, run the following commands:
 
 ```powershell
 # myapp contains the files downloaded from this repo
-> cd .\myapp\
-> c:\windows\microsoft.net\framework\v4.0.30319\msbuild.exe .\src\PrimeTables.Console\PrimeTables.Console.csproj /t:Build /p:Configuration=Release
+> cd .\myapp\src\PrimeTables.Console\
+> c:\windows\microsoft.net\framework\v4.0.30319\msbuild.exe .\PrimeTables.Console.csproj /t:Build /p:Configuration=Release
 ```
 
 The application is now ready to be executed.
 
 ## Execution
 
-** WARNING! Use at your own risk** I have tested up to 1 million prime numbers but results pass this can potentially break your machine. I myself managed to hit 100% CPU and use all 32GB of ram on my machine.
+**WARNING! Use at your own risk** I have tested up to 1 million prime numbers but results pass this can potentially break your machine. I myself managed to hit 100% CPU and use all 32GB of ram on my machine.
 
 ```powershell
 # myapp would now contain the compiled application
