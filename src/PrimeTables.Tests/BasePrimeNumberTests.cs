@@ -34,6 +34,7 @@
                 yield return new TestCaseData(0, null);
                 yield return new TestCaseData(1, new long[] { 2 });
                 yield return new TestCaseData(3, new long[] { 2, 3, 5 });
+                // It's too hard to write all 1000000 numbers to test
             }
         }
 
