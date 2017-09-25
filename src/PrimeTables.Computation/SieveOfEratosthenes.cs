@@ -4,6 +4,7 @@
     using System.Collections;
     using System.Collections.Generic;
 
+    /// <inheritdoc />
     /// <summary>
     /// Sieve of Eratosthenes
     /// A simple, ancient algorithm for finding all prime numbers up to any given limit.
@@ -14,6 +15,7 @@
     /// </remarks>
     public class SieveOfEratosthenes : IGenerator
     {
+        /// <inheritdoc />
         /// <summary>
         /// Generate a given number of prime numbers using the Sieve of Eratosthenes algorithm.
         /// </summary>

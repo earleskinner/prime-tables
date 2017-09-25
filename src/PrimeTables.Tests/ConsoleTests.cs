@@ -1,9 +1,9 @@
-﻿using NUnit.Framework;
-
-namespace PrimeTables.Tests
+﻿namespace PrimeTables.Tests
 {
     using System;
     using System.Collections.Generic;
+
+    using NUnit.Framework;
 
     using PrimeTables.Computation;
     using PrimeTables.Console;

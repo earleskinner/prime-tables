@@ -52,8 +52,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConsoleTests.cs" />
-    <Compile Include="PrimeNumberTests.cs" />
+    <Compile Include="BasePrimeNumberTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SieveOfEratosthenesTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

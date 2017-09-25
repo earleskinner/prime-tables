@@ -1,6 +1,4 @@
-﻿using NUnit.Framework;
-
-namespace PrimeTables.Tests
+﻿namespace PrimeTables.Tests
 {
     using System;
     using System.Collections.Generic;
@@ -9,8 +7,10 @@ namespace PrimeTables.Tests
     using PrimeTables.Computation;
 
     [TestFixture]
-    public class PrimeNumberTests
+    public class BasePrimeNumberTests<T> where T : IGenerator
     {
+        private readonly IGenerator generator = Activator.CreateInstance<T>();
+
         public class PrimeNumberInput : IInput
         {
             public PrimeNumberInput(int upperbound)
@@ -27,7 +27,7 @@ namespace PrimeTables.Tests
             public IEnumerable<long> PrimeNumbers { get; set; }
         }
 
-        private static IEnumerable<TestCaseData> ExpectedPrimeNumbers
+        public static IEnumerable<TestCaseData> ExpectedPrimeNumbers
         {
             get
             {
@@ -43,7 +43,7 @@ namespace PrimeTables.Tests
         /// <remarks>
         /// The timeouts should be adjusted as code is optimised
         /// </remarks>
-        private static IEnumerable<TestCaseData> Timeouts
+        public static IEnumerable<TestCaseData> Timeouts
         {
             get
             {
@@ -62,8 +62,7 @@ namespace PrimeTables.Tests
         public void Should_match_expected_prime_numbers(int upperbound, long[] expectedPrimeNumbers)
         {
             var input = new PrimeNumberInput(upperbound);
-            var generator = new SieveOfEratosthenes();
-            var output = generator.GeneratePrimeNumbers<PrimeNumberOutput>(input);
+            var output = this.generator.GeneratePrimeNumbers<PrimeNumberOutput>(input);
             Assert.AreEqual(output.PrimeNumbers, expectedPrimeNumbers);
         }
 
@@ -73,8 +72,7 @@ namespace PrimeTables.Tests
         {
             var start = DateTime.Now;
             var input = new PrimeNumberInput(upperbound);
-            var generator = new SieveOfEratosthenes();
-            generator.GeneratePrimeNumbers<PrimeNumberOutput>(input);
+            this.generator.GeneratePrimeNumbers<PrimeNumberOutput>(input);
             var timeTaken = (DateTime.Now - start).Milliseconds;
             Console.WriteLine($"Time taken: {timeTaken}ms to generate {input.UpperBound} prime numbers");
             Assert.LessOrEqual(timeTaken, maximumTime);
