@@ -51,15 +51,11 @@ namespace PrimeTables.Tests
         {
             get
             {
-                yield return new TestCaseData(1);
-                yield return new TestCaseData(100);
-                yield return new TestCaseData(1000);
-                yield return new TestCaseData(10000);
-                yield return new TestCaseData(20000);
-                // Caution: Do not try to run the below tests
-                // They will cripple any machine
-                //yield return new TestCaseData(100000);
-                //yield return new TestCaseData(int.MaxValue);
+                yield return new TestCaseData(new SieveOfEratosthenes(), 1);
+                yield return new TestCaseData(new SieveOfEratosthenes(), 100);
+                yield return new TestCaseData(new SieveOfEratosthenes(), 1000);
+                yield return new TestCaseData(new SieveOfEratosthenes(), 10000);
+                yield return new TestCaseData(new SieveOfEratosthenes(), 20000);
             }
         }
 
@@ -84,23 +80,13 @@ namespace PrimeTables.Tests
         }
 
         [Test]
-        [TestCaseSource(nameof(ExpectedPrimeTables))]
-        public void Should_match_expected_prime_tables(ConsoleOutput output, long[][] expectedPrimeTable)
-        {
-            var actualPrimeTable = output.CreatePrimeTable();
-            Assert.AreEqual(actualPrimeTable, expectedPrimeTable);
-        }
-
-        [Test]
         [TestCaseSource(nameof(OutOfMemoryTestData))]
-        public void Should_not_throw_out_of_memmory_exception(int upperbound)
+        public void Should_not_throw_out_of_memmory_exception(IGenerator generator, int upperbound)
         {
             Assert.DoesNotThrow(() =>
                 {
                     var input = new ConsoleInput(new string[] { upperbound.ToString() });
-                    var generator = new PrimeNumberGenerator();
-                    var output = generator.GeneratePrimeNumbers<ConsoleOutput>(input);
-                    var table = output.CreatePrimeTable();
+                    generator.GeneratePrimeNumbers<ConsoleOutput>(input);
                 });
         }
     }

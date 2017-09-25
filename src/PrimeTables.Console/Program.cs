@@ -15,7 +15,7 @@ namespace PrimeTables.Console
         static void Main(string[] args)
         {
             var input = new ConsoleInput(args);
-            var generator = new PrimeNumberGenerator();
+            var generator = new SieveOfEratosthenes();
             Console.WriteLine("Generating prime numbers...");
             var output = generator.GeneratePrimeNumbers<ConsoleOutput>(input);
 

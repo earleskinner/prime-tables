@@ -24,7 +24,7 @@ namespace PrimeTables.Tests
         {
             public int Multipler { get; set; }
 
-            public long[] PrimeNumbers { get; set; }
+            public IEnumerable<long> PrimeNumbers { get; set; }
         }
 
         private static IEnumerable<TestCaseData> ExpectedPrimeNumbers
@@ -50,8 +50,10 @@ namespace PrimeTables.Tests
                 yield return new TestCaseData(0, 5);
                 yield return new TestCaseData(1, 5);
                 yield return new TestCaseData(3, 5);
-                yield return new TestCaseData(10000, 600);
-                yield return new TestCaseData(20000, 1000);
+                yield return new TestCaseData(10000, 100);
+                yield return new TestCaseData(20000, 200);
+                yield return new TestCaseData(100000, 1000);
+                yield return new TestCaseData(1000000, 2000);
             }
         }
 
@@ -60,7 +62,7 @@ namespace PrimeTables.Tests
         public void Should_match_expected_prime_numbers(int upperbound, long[] expectedPrimeNumbers)
         {
             var input = new PrimeNumberInput(upperbound);
-            var generator = new PrimeNumberGenerator();
+            var generator = new SieveOfEratosthenes();
             var output = generator.GeneratePrimeNumbers<PrimeNumberOutput>(input);
             Assert.AreEqual(output.PrimeNumbers, expectedPrimeNumbers);
         }
@@ -71,7 +73,7 @@ namespace PrimeTables.Tests
         {
             var start = DateTime.Now;
             var input = new PrimeNumberInput(upperbound);
-            var generator = new PrimeNumberGenerator();
+            var generator = new SieveOfEratosthenes();
             generator.GeneratePrimeNumbers<PrimeNumberOutput>(input);
             var timeTaken = (DateTime.Now - start).Milliseconds;
             Console.WriteLine($"Time taken: {timeTaken}ms to generate {input.UpperBound} prime numbers");

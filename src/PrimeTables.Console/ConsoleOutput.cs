@@ -1,6 +1,7 @@
 ﻿namespace PrimeTables.Console
 {
     using System;
+    using System.Linq;
     using System.Text;
 
     using PrimeTables.Computation;
@@ -9,19 +10,21 @@
     {
         public override void WritePrimeTable()
         {
-            var table = this.CreatePrimeTable();
             var builder = new StringBuilder();
 
-            for (var i = 0; i <= table.Length - 1; i++)
+            for (var i = 1; i <= Multipler; i++)
             {
-                for (var j = 0; j <= table[i].Length - 1; j++)
+                var j = 0;
+                foreach (var prime in PrimeNumbers)
                 {
                     builder.Append(j == 0 ? "|" : string.Empty);
-                    builder.Append($" {table[i][j]} |");
+                    builder.Append($" {prime * i} |");
+                    j++;
                 }
                 Console.WriteLine(builder.ToString());
                 builder.Clear();
             }
+
         }
     }
 }
