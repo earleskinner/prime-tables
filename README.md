@@ -24,7 +24,7 @@ To build this application outside of Visual Studio, run the following commands:
 ```powershell
 # myapp contains the files downloaded from this repo
 > cd .\myapp\
-> c:\windows\microsoft.net\framework\v4.0.30319\msbuild.exe .\PrimeTables.Console\PrimeTables.Console.csproj /t:Build /p:Configuration=Release
+> c:\windows\microsoft.net\framework\v4.0.30319\msbuild.exe .\src\PrimeTables.Console\PrimeTables.Console.csproj /t:Build /p:Configuration=Release
 ```
 
 The application is now ready to be executed.
@@ -35,7 +35,7 @@ The application is now ready to be executed.
 
 ```powershell
 # myapp would now contain the compiled application
-> cd .\myapp\PrimeTables.Console\bin\Release\
+> cd .\myapp\src\PrimeTables.Console\bin\Release\
 > .\pt.exe [number] # A positive integer without the square brackets. For example: 1000
 ```
 

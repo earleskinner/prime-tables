@@ -88,11 +88,9 @@
         /// </returns>
         private static BitArray DeterminePrimeNumbers(int uppperbound)
         {
-            var bitArray = new BitArray(uppperbound + 1, true)
-                               {
-                                   [0] = false,
-                                   [1] = false
-                               };
+            var bitArray = new BitArray(uppperbound + 1, true);
+            bitArray[0] = false;
+            bitArray[1] = false;
             for (var i = 0; i * i <= uppperbound; i++)
             {
                 if (!bitArray[i])
