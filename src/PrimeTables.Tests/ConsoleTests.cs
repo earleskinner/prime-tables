@@ -34,19 +34,6 @@
             }
         }
 
-        private static IEnumerable<TestCaseData> ExpectedPrimeTables
-        {
-            get
-            {
-                yield return new TestCaseData(new ConsoleOutput{ Multipler = 0, PrimeNumbers = null}, null);
-                yield return new TestCaseData(new ConsoleOutput { Multipler = 1, PrimeNumbers = null }, null);
-                yield return new TestCaseData(new ConsoleOutput { Multipler = 0, PrimeNumbers = new long[] { 0 } }, null);
-                yield return new TestCaseData(new ConsoleOutput { Multipler = 1, PrimeNumbers = new long[] { 0 } }, new long[][] { new long[] { 0 } });
-                yield return new TestCaseData(new ConsoleOutput { Multipler = 1, PrimeNumbers = new long[] { 2, 3, 5 }}, new long[][] { new long[] { 2, 3, 5 } });
-                yield return new TestCaseData(new ConsoleOutput { Multipler = 2, PrimeNumbers = new long[] { 2, 3, 5 }}, new long[][] { new long[] { 2, 3, 5 }, new long[] { 4, 6, 10 } });
-            }
-        }
-
         private static IEnumerable<TestCaseData> OutOfMemoryTestData
         {
             get
@@ -85,7 +72,7 @@
         {
             Assert.DoesNotThrow(() =>
                 {
-                    var input = new ConsoleInput(new string[] { upperbound.ToString() });
+                    var input = new ConsoleInput(new[] { upperbound.ToString() });
                     generator.GeneratePrimeNumbers<ConsoleOutput>(input);
                 });
         }
